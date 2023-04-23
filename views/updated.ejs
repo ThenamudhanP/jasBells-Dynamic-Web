@@ -1,0 +1,123 @@
+<!-- <h1>Update Post</h1>
+
+<form action="/update/<%= post._id %>" method="POST">
+  <label for="newName">Name:</label>
+  <input type="text" name="newName" value="<%= post.name %>" required>
+
+  <label for="newMail">Mail:</label>
+  <input type="email" name="newMail" value="<%= post.mail %>" required>
+
+  <label for="newPhoneNumber">Phone Number:</label>
+  <input type="tel" name="newPhoneNumber" value="<%= post.phoneNumber %>" required>
+
+  <label for="newPassword">Password:</label>
+  <input type="password" name="newPassword" value="<%= post.password %>" required>
+
+  <label for="newAbout">About:</label>
+  <textarea name="newAbout" rows="5" required><%= post.about %></textarea>
+
+  <label for="newOccupation">Occupation:</label>
+  <input type="text" name="newOccupation" value="<%= post.occupation %>" required>
+
+  <label for="newInstaID">Instagram ID:</label>
+  <input type="text" name="newInstaID" value="<%= post.instaID %>" required>
+
+  <button type="submit">Update Post</button>
+</form> -->
+
+
+
+<%- include("Partials/header") -%>
+
+
+
+<style>
+
+  /* Style for form container */
+form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Style for form input fields */
+form input,
+form textarea {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+/* Style for form button */
+form button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #008CBA;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+/* Style for form labels */
+form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Style for form on smaller screens */
+@media (max-width: 600px) {
+  form input,
+  form textarea {
+    font-size: 14px;
+  }
+  
+  form button {
+    font-size: 14px;
+  }
+  
+  form label {
+    font-size: 14px;
+  }
+}
+
+</style>
+
+<form action="/update/<%= post._id %>" method="POST">
+    <label for="cardname">Name:</label>
+    <input type="text" name="cardname" value="<%= post.name %>">
+  
+    <label for="cardmail">Email:</label>
+    <input type="email" name="cardmail" value="<%= post.mail %>">
+  
+    <label for="cardnumber">Phone Number:</label>
+    <input type="text" name="cardnumber" value="<%= post.phoneNumber %>">
+  
+    <label for="cardabout">About:</label>
+    <textarea name="cardabout"><%= post.about %></textarea>
+  
+    <label for="cardoccupation">Occupation:</label>
+    <input type="text" name="cardoccupation" value="<%= post.occupation %>">
+  
+    <label for="cardinstaID">Instagram ID:</label>
+    <input type="text" name="cardinstaID" value="<%= post.instaID %>">
+  
+    <button type="submit">Update</button>
+  </form>
+  
+
+  <%- include("Partials/footer") -%>
+
+
+
+
+

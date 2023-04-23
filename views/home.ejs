@@ -1,0 +1,13 @@
+<%- include("Partials/header") -%>
+<h1>Ready to share your wildest imagination? Click the 'Compose' button and start writing your reincarnation story now!</h1>
+<% console.log(Posts)%>
+
+<% Posts.forEach(function(post){ %>
+  <h2><%=post.title%></h2>
+  <p>
+    <%=post.body.substring(1,100)+"..."%>
+    <a href="/posts/<%= post._id %>">Read-More</a>
+  </p>
+<% }); %>
+
+<%- include("Partials/footer") -%>
