@@ -24,10 +24,10 @@ mongoose.connect(mongoURI);
 
 const postSchema = {
   name: String , 
-  mail:  String,
+  // mail:  String,
   phoneNumber: String,
   password: String,
-  about : String,
+  // about : String,
   occupation : String,
   instaID : String
 };
@@ -99,10 +99,10 @@ app.get("/update/:postId", function(req, res) {
 app.post("/register",function(req,res){
   const post = new Post({
     name: req.body.cardname,
-    mail: req.body.cardmail,
+    // mail: req.body.cardmail,
     phoneNumber:req.body.cardnumber,
     password: req.body.cardpassword,
-    about : req.body.cardabout,
+    // about : req.body.cardabout,
     occupation : req.body.cardoccupation,
     instaID : req.body.cardinstaID
 
