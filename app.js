@@ -119,54 +119,6 @@ app.post("/register",function(req,res){
 });
 
 
-app.post("/", function(req, res) {
-  const name = req.body.userName;
-  const password = req.body.userPassword;
-
-  Post.findOne({ name: name, password: password }).exec()
-    .then(post => {
-      if (!post) {
-        res.render("loginorsignin", { error: "Invalid username or password." });
-      } else {
-        // Fetch the user's phone number and occupation
-        const phoneNumber = post.phoneNumber;
-        const occupation = post.occupation;
-
-        // Find potential matches based on occupation
-        Post.find({ occupation: phoneNumber }).then(potentialMatches => {
-          let matchFound = false;
-          let matchingUser;
-
-          // Iterate through potential matches to check for reciprocal interest
-          for (const potentialMatch of potentialMatches) {
-            if (potentialMatch.phoneNumber === occupation) {
-              matchFound = true;
-              matchingUser = potentialMatch;
-              break; // Exit the loop once a match is found
-            }
-          }
-
-          // Render the post page with appropriate message
-          res.render("post", {
-            post: post,
-            name: post.name,
-            number: post.phoneNumber,
-            insta: post.instaID,
-            occupations: post.occupation,
-            _id: post._id,
-            matchFound: matchFound,
-            matchingUser: matchingUser
-          });
-        });
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).send("Internal server error");
-    });
-});
-
-
 // app.post("/", function(req, res) {
 //   const name = req.body.userName;
 //   const password = req.body.userPassword;
@@ -176,24 +128,72 @@ app.post("/", function(req, res) {
 //       if (!post) {
 //         res.render("loginorsignin", { error: "Invalid username or password." });
 //       } else {
-//         res.render("post", {
-//            post: post,
-//            name: post.name,
-//            mail: post.mail,
-//            number:post.phoneNumber,
-//            insta : post.instaID,
-//            occupations : post.occupation,
-//            abouts : post.about,
-//            _id: post._id 
-          
+//         // Fetch the user's phone number and occupation
+//         const phoneNumber = post.phoneNumber;
+//         const occupation = post.occupation;
+
+//         // Find potential matches based on occupation
+//         Post.find({ occupation: phoneNumber }).then(potentialMatches => {
+//           let matchFound = false;
+//           let matchingUser;
+
+//           // Iterate through potential matches to check for reciprocal interest
+//           for (const potentialMatch of potentialMatches) {
+//             if (potentialMatch.phoneNumber === occupation) {
+//               matchFound = true;
+//               matchingUser = potentialMatch;
+//               break; // Exit the loop once a match is found
+//             }
+//           }
+
+//           // Render the post page with appropriate message
+//           res.render("post", {
+//             post: post,
+//             name: post.name,
+//             number: post.phoneNumber,
+//             insta: post.instaID,
+//             occupations: post.occupation,
+//             _id: post._id,
+//             matchFound: matchFound,
+//             matchingUser: matchingUser
 //           });
+//         });
 //       }
 //     })
 //     .catch(err => {
 //       console.error(err);
-//       res.sendStatus(500);
+//       res.status(500).send("Internal server error");
 //     });
 // });
+
+
+app.post("/", function(req, res) {
+  const name = req.body.userName;
+  const password = req.body.userPassword;
+
+  Post.findOne({ name: name, password: password }).exec()
+    .then(post => {
+      if (!post) {
+        res.render("loginorsignin", { error: "Invalid username or password." });
+      } else {
+        res.render("post", {
+           post: post,
+           name: post.name,
+           mail: post.mail,
+           number:post.phoneNumber,
+           insta : post.instaID,
+           occupations : post.occupation,
+           abouts : post.about,
+           _id: post._id 
+          
+          });
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+});
 
 app.post("/delete/:postId", function(req, res) {
   const requestedPostId = req.params.postId;
