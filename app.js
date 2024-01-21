@@ -156,6 +156,7 @@ app.post("/", function(req, res) {
             _id: post._id,
             matchFound: matchFound,
             matchingUser: matchingUser
+            interestedPersonNumber: post.occupation
           });
         });
       }
